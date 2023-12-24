@@ -30,27 +30,29 @@ variable "spoke_cidrs" {
 }
 
 variable "default_dns_server_ip_address" {
-  description = "IP Address of the DNS Server that would resolve queries by default. Default value is an Azure DNS Server public ip"
   type        = string
+  description = "IP Address of the DNS Server that would resolve queries by default. Default value is an Azure DNS Server public ip"
   default     = "168.63.129.16"
 }
 
 variable "additional_dns_zones" {
-  description = "List of objects to configure custom DNS zones. DNS Traffic would be forwarded to mentioned DNS Server IP Address in case zone name is matched in query"
   type = list(object({
     zone_name           = string
     server_ip_addresses = list(string)
   }))
-  default = []
+  description = "List of objects to configure custom DNS zones. DNS Traffic would be forwarded to mentioned DNS Server IP Address in case zone name is matched in query"
+  default     = []
 }
 
 
 variable "public_ip_prefix_enabled" {
+  type        = string
   description = "Boolean flag that determines whether Public IP Address prefix is assigned to VMSS. By default it is disable because NAT Gateway is used for default outbound traffic."
   default     = false
 }
 
 variable "admin_username" {
+  type        = string
   description = "VM Scale Set admin username"
   default     = "azureuser"
 }
