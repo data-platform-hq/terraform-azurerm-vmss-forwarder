@@ -1,0 +1,96 @@
+#!/bin/bash
+set -e -x
+
+apt-get update && apt-get install -y iptables
+
+echo "Installing BIND9"
+apt-get install -y bind9
+
+if [ $? -ne 0 ]; then
+    echo "Failed to install bind9 package."
+    exit 1
+fi
+
+# DNS
+echo -e "DNS Config"
+cat << 'EOF' > /etc/bind/named.conf.options
+options {
+        directory "/var/cache/bind";
+        listen-on port 53 { any; };
+        listen-on-v6  { any; };
+        auth-nxdomain no;
+        recursion yes;
+        allow-query     { 127.0.0.1; ${DNS_VNET_CIDRS};};
+        forwarders {
+                ${DEFAULT_DNS};
+                        };
+        forward first;
+        dnssec-validation auto;
+};
+EOF
+
+cat << 'EOF' > /etc/bind/named.conf.local
+%{ for k,v in DNS_ZONES }
+zone "${k}" IN {
+        type forward;
+        forward only;
+        forwarders { ${v}; };
+};
+%{ endfor ~}
+EOF
+
+
+service bind9 restart
+echo $(systemctl status bind9)
+echo -e "DNS Config done"
+
+echo -e "nat conf start"
+
+# Enable ip forwarding
+echo "1" > /proc/sys/net/ipv4/ip_forward
+
+echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
+sysctl -p
+
+# Flush existing iptables rules
+iptables -t nat -F
+iptables -F
+
+# Looping over vnets
+for vnet in ${FW_VNET_CIDRS}
+do
+   iptables -t nat -A POSTROUTING -s "$vnet" -o eth0 -j MASQUERADE
+   iptables -A FORWARD -s "$vnet" -o eth0 -j ACCEPT
+   iptables -A FORWARD -d "$vnet" -m state --state ESTABLISHED,RELATED -i eth0 -j ACCEPT
+   iptables -A INPUT -s "$vnet" -j ACCEPT
+done
+iptables -A INPUT -m state --state INVALID -j DROP
+
+echo -e "nat conf end"
+
+echo -e "install iptables persistent"
+
+iptables_path="/etc/iptables"
+if [ ! -d "$iptables_path" ]; then
+    mkdir -p "$iptables_path"
+    echo "Directory created: $iptables_path"
+else
+    echo "Directory already exists: $iptables_path"
+fi
+
+/sbin/iptables-save > /etc/iptables/rules.v4
+
+cat /etc/iptables/rules.v4
+
+apt update
+echo iptables-persistent iptables-persistent/autosave_v4 boolean true | debconf-set-selections
+echo iptables-persistent iptables-persistent/autosave_v6 boolean true | debconf-set-selections
+apt install -y iptables-persistent
+
+echo "/sbin/iptables-restore < /etc/iptables/rules.v4" >> /etc/rc.local
+
+
+sudo iptables -L
+sudo iptables -L -t nat
+
+echo -e "Done!"
