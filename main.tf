@@ -53,7 +53,6 @@ module "vmss" {
         DNS_ZONES      = { for object in var.additional_dns_zones : object.zone_name => join("; ", object.server_ip_addresses) if length(object.server_ip_addresses) != 0 }
         DEFAULT_DNS    = var.default_dns_server_ip_address
         FW_VNET_CIDRS  = join(" ", var.spoke_cidrs),
-        ETH_IF         = "eth0"
       })))
     })
     }, {
