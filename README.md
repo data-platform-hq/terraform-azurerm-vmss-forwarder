@@ -5,6 +5,32 @@ Terraform module for creation Azure VMSS Forwarder
 This module provides an ability to deploy Azure VMSS Forwarder.
 
 ```hcl
+data "azurerm_resource_group" "example" {
+  name = "example"
+}
+
+data "azurerm_subnet" "example" {
+  name                 = "example-subnet-name"
+  virtual_network_name = "example"
+  resource_group_name  = data.azurerm_resource_group.example.name
+}
+
+module "vmss_forwarder" {
+  source = "data-platform-hq/vmss-forwarder/azurerm"
+
+  load_balancer_name   = "example-load-balancer-name"
+  vm_scale_set_name    = "example-vm-scale-set-name"
+  location             = "eastus"
+  resource_group       = data.azurerm_resource_group.example.name
+  subnet_id            = data.azurerm_subnet.example.id
+  spoke_cidrs          = [10.0.0.0/8]
+  additional_dns_zones =  [
+    {
+      zone_name           = "example.com"
+      server_ip_addresses = ["20.0.0.4"]
+    }
+  ]
+}
 ```
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
