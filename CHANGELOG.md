@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/data-platform-hq/terraform-azurerm-vmss-forwarder/compare/v1.0.0...v1.0.1) (2023-12-26)
+
+
+### Bug Fixes
+
+* updated script; dns moved to the end ([c4c0407](https://github.com/data-platform-hq/terraform-azurerm-vmss-forwarder/commit/c4c04078da0cebbeed82f8c9aaf436e9d7cfc9d7))
+
 # 1.0.0 (2023-12-26)
 
 
