@@ -16,18 +16,19 @@ data "azurerm_subnet" "example" {
 }
 
 module "vmss_forwarder" {
-  source = "data-platform-hq/vmss-forwarder/azurerm"
+  source  = "data-platform-hq/vmss-forwarder/azurerm"
+  version = "~> 1.0"
 
   load_balancer_name   = "example-load-balancer-name"
   vm_scale_set_name    = "example-vm-scale-set-name"
   location             = "eastus"
   resource_group       = data.azurerm_resource_group.example.name
   subnet_id            = data.azurerm_subnet.example.id
-  spoke_cidrs          = [10.0.0.0/8]
+  spoke_cidrs          = ["10.0.0.0/8"]
   additional_dns_zones =  [
     {
       zone_name           = "example.com"
-      server_ip_addresses = ["20.0.0.4"]
+      server_ip_addresses = ["10.120.0.4"]
     }
   ]
 }
