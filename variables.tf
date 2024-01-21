@@ -41,6 +41,17 @@ variable "default_dns_servers" {
   default     = ["168.63.129.16"]
 }
 
+variable "dnssec_validation" {
+  type        = string
+  description = "DNSSEC validation value in bind9 config"
+  default     = "no"
+
+  validation {
+    condition     = contains(["yes", "no", "auto"], var.dnssec_validation)
+    error_message = "Please provide one of 'yes', 'no' or 'auto' for DNSSEC config"
+  }
+}
+
 variable "additional_dns_zones" {
   type = list(object({
     zone_name           = string

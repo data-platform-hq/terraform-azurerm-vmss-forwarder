@@ -72,7 +72,7 @@ options {
                 ${DEFAULT_DNS};
                         };
         forward first;
-        dnssec-validation no;
+        dnssec-validation ${DNSSEC_VALIDATION};
 };
 EOF
 

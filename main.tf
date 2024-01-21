@@ -53,10 +53,11 @@ module "vmss" {
     type_handler_version = "2.0"
     settings = jsonencode({
       "script" : (base64encode(templatefile("${path.module}/iptables.sh.tftpl", {
-        DNS_VNET_CIDRS = join("; ", var.spoke_cidrs),
-        DNS_ZONES      = { for object in var.additional_dns_zones : object.zone_name => join("; ", object.server_ip_addresses) if length(object.server_ip_addresses) != 0 }
-        DEFAULT_DNS    = join("; ", var.default_dns_servers)
-        FW_VNET_CIDRS  = join(" ", var.spoke_cidrs),
+        DNS_VNET_CIDRS    = join("; ", var.spoke_cidrs),
+        DNS_ZONES         = { for object in var.additional_dns_zones : object.zone_name => join("; ", object.server_ip_addresses) if length(object.server_ip_addresses) != 0 }
+        DNSSEC_VALIDATION = var.dnssec_validation
+        DEFAULT_DNS       = join("; ", var.default_dns_servers)
+        FW_VNET_CIDRS     = join(" ", var.spoke_cidrs),
       })))
     })
     }, {
