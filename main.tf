@@ -1,10 +1,13 @@
 module "lb" {
   source  = "data-platform-hq/load-balancer/azurerm"
-  version = "1.0.0"
+  version = "1.0.1"
 
-  resource_group     = var.resource_group
-  location           = var.location
-  load_balancer_name = var.load_balancer_name
+  tags                      = var.tags
+  resource_group            = var.resource_group
+  location                  = var.location
+  load_balancer_name        = var.load_balancer_name
+  enable_diagnostic_setting = var.lb_enable_diagnostic_setting
+  analytics_workspace_id    = var.analytics_workspace_id
   lb_frontend_ip_configurations = [{
     name      = "primary"
     subnet_id = var.subnet_id
@@ -28,6 +31,7 @@ module "vmss" {
   source  = "data-platform-hq/vmss/azurerm"
   version = "1.2.0"
 
+  tags                     = var.tags
   resource_group           = var.resource_group
   location                 = var.location
   scale_set_name           = var.vm_scale_set_name
@@ -51,7 +55,7 @@ module "vmss" {
       "script" : (base64encode(templatefile("${path.module}/iptables.sh.tftpl", {
         DNS_VNET_CIDRS = join("; ", var.spoke_cidrs),
         DNS_ZONES      = { for object in var.additional_dns_zones : object.zone_name => join("; ", object.server_ip_addresses) if length(object.server_ip_addresses) != 0 }
-        DEFAULT_DNS    = var.default_dns_server_ip_address
+        DEFAULT_DNS    = join("; ", var.default_dns_servers)
         FW_VNET_CIDRS  = join(" ", var.spoke_cidrs),
       })))
     })

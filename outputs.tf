@@ -13,6 +13,11 @@ output "lb_private_ip" {
   description = "Load Balancer private ip address"
 }
 
+output "vmss_username" {
+  value       = var.admin_username
+  description = "VM Scale Sets admin username value"
+}
+
 output "vmss_password" {
   value       = random_password.this.result
   description = "VM Scale Sets admin password value"
