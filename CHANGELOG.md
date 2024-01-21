@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/data-platform-hq/terraform-azurerm-vmss-forwarder/compare/v1.0.1...v1.1.0) (2024-01-21)
+
+
+### Bug Fixes
+
+* dnssec validation ([8cec613](https://github.com/data-platform-hq/terraform-azurerm-vmss-forwarder/commit/8cec6133e7f30b3e6722a298c6414a4678d71084))
+
+
+### Features
+
+* multiple dns servers; tags; lb diagnostics ([c8d823b](https://github.com/data-platform-hq/terraform-azurerm-vmss-forwarder/commit/c8d823b14b290a8d25368708897b1c41d77a82dd))
+
 ## [1.0.1](https://github.com/data-platform-hq/terraform-azurerm-vmss-forwarder/compare/v1.0.0...v1.0.1) (2023-12-26)
 
 
