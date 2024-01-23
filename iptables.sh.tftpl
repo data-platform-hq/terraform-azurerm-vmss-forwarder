@@ -62,10 +62,9 @@ cat << 'EOF' > /etc/bind/named.conf.options
 options {
         directory "/var/cache/bind";
         listen-on port 53 { any; };
-        listen-on-v6  { any; };
         auth-nxdomain no;
         recursion yes;
-        allow-query-cache { localhost: 127.0.0.1; ${DNS_VNET_CIDRS};};
+        allow-query-cache { localhost; 127.0.0.1; ${DNS_VNET_CIDRS};};
         allow-recursion { localhost; 127.0.0.1; ${DNS_VNET_CIDRS};};
         allow-query { 127.0.0.1; ${DNS_VNET_CIDRS};};
         forwarders {
