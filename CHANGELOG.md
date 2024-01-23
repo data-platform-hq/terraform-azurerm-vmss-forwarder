@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/data-platform-hq/terraform-azurerm-vmss-forwarder/compare/v1.1.0...v1.1.1) (2024-01-23)
+
+
+### Bug Fixes
+
+* updated bind script ([d37a507](https://github.com/data-platform-hq/terraform-azurerm-vmss-forwarder/commit/d37a5077d893c7c9c4c848ce03d4375e82c0b9f1))
+
 # [1.1.0](https://github.com/data-platform-hq/terraform-azurerm-vmss-forwarder/compare/v1.0.1...v1.1.0) (2024-01-21)
 
 
