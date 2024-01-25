@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/data-platform-hq/terraform-azurerm-vmss-forwarder/compare/v1.1.1...v1.1.2) (2024-01-25)
+
+
+### Bug Fixes
+
+* updated vmss module version ([c3a775f](https://github.com/data-platform-hq/terraform-azurerm-vmss-forwarder/commit/c3a775f83629fdeb4c7947db5065e28da55a4229))
+
 ## [1.1.1](https://github.com/data-platform-hq/terraform-azurerm-vmss-forwarder/compare/v1.1.0...v1.1.1) (2024-01-23)
 
 
