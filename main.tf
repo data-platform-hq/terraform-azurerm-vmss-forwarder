@@ -29,7 +29,7 @@ resource "random_password" "this" {
 
 module "vmss" {
   source  = "data-platform-hq/vmss/azurerm"
-  version = "1.2.0"
+  version = "1.2.1"
 
   tags                     = var.tags
   resource_group           = var.resource_group
