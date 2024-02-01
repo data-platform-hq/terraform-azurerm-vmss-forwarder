@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/data-platform-hq/terraform-azurerm-vmss-forwarder/compare/v1.1.2...v1.1.3) (2024-02-01)
+
+
+### Bug Fixes
+
+* add dcr ([b3eb03b](https://github.com/data-platform-hq/terraform-azurerm-vmss-forwarder/commit/b3eb03b42a34ba57eb0211d0a018f3e778045a63))
+
 ## [1.1.2](https://github.com/data-platform-hq/terraform-azurerm-vmss-forwarder/compare/v1.1.1...v1.1.2) (2024-01-25)
 
 
