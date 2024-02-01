@@ -29,7 +29,7 @@ resource "random_password" "this" {
 
 module "vmss" {
   source  = "data-platform-hq/vmss/azurerm"
-  version = "1.2.1"
+  version = "1.2.3"
 
   tags                     = var.tags
   resource_group           = var.resource_group
@@ -66,4 +66,11 @@ module "vmss" {
     type                 = "NetworkWatcherAgentLinux"
     type_handler_version = "1.4"
   }]
+
+  # Data Collection Rules config
+  enable_data_collection_rule = var.drc_enabled
+  analytics_workspace_id      = var.analytics_workspace_id
+  facility_names              = var.drc_facility_names
+  log_levels                  = var.drc_log_levels
+  datasource_name             = var.drc_datasource_name
 }

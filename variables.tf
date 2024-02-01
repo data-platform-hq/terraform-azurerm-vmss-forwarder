@@ -84,3 +84,27 @@ variable "lb_enable_diagnostic_setting" {
   description = "Enable diagnostic setting. var.analytics_workspace_id must be provided"
   default     = false
 }
+
+variable "drc_enabled" {
+  type        = bool
+  description = "Enable data collection rule. var.analytics_workspace_id must be provided"
+  default     = false
+}
+
+variable "drc_datasource_name" {
+  type        = string
+  description = "Datasource syslog name"
+  default     = "datasource-syslog"
+}
+
+variable "drc_facility_names" {
+  type        = list(string)
+  description = "List of Facility names"
+  default     = ["daemon", "syslog", "user"]
+}
+
+variable "drc_log_levels" {
+  type        = list(string)
+  description = "List of Log levels"
+  default     = ["Debug"]
+}
