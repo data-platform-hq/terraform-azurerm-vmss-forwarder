@@ -53,7 +53,7 @@ module "vmss_forwarder" {
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_lb"></a> [lb](#module\_lb) | data-platform-hq/load-balancer/azurerm | 1.0.1 |
-| <a name="module_vmss"></a> [vmss](#module\_vmss) | data-platform-hq/vmss/azurerm | 1.2.3 |
+| <a name="module_vmss"></a> [vmss](#module\_vmss) | data-platform-hq/vmss/azurerm | 1.2.4 |
 
 ## Resources
 
