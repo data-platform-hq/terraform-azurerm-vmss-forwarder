@@ -44,6 +44,7 @@ module "vmss" {
     lb_backend_address_pool_ids     = [module.lb.lb_backend_address_pool_id]
     overprovision                   = true
     enable_ip_forwarding_interface  = true
+    upgrade_mode                    = "Automatic"
   }
 
   extensions = [{
