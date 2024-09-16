@@ -1,6 +1,6 @@
 module "lb" {
   source  = "data-platform-hq/load-balancer/azurerm"
-  version = "1.0.1"
+  version = "1.1.0"
 
   tags                      = var.tags
   resource_group            = var.resource_group
@@ -29,7 +29,7 @@ resource "random_password" "this" {
 
 module "vmss" {
   source  = "data-platform-hq/vmss/azurerm"
-  version = "1.2.4"
+  version = "1.3.0"
 
   tags                     = var.tags
   resource_group           = var.resource_group

@@ -39,7 +39,7 @@ module "vmss_forwarder" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 3.75.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 4.0.1 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | >=3.5.0 |
 
 ## Providers
@@ -52,8 +52,8 @@ module "vmss_forwarder" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_lb"></a> [lb](#module\_lb) | data-platform-hq/load-balancer/azurerm | 1.0.1 |
-| <a name="module_vmss"></a> [vmss](#module\_vmss) | data-platform-hq/vmss/azurerm | 1.2.4 |
+| <a name="module_lb"></a> [lb](#module\_lb) | data-platform-hq/load-balancer/azurerm | 1.1.0 |
+| <a name="module_vmss"></a> [vmss](#module\_vmss) | data-platform-hq/vmss/azurerm | 1.3.0 |
 
 ## Resources
 
