@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/data-platform-hq/terraform-azurerm-vmss-forwarder/compare/v1.1.5...v1.2.0) (2024-09-16)
+
+
+### Features
+
+* upgrade to azurerm v4 ([bfb8024](https://github.com/data-platform-hq/terraform-azurerm-vmss-forwarder/commit/bfb8024d3b22a49b652170965a783e23c2c55ed1))
+
 ## [1.1.5](https://github.com/data-platform-hq/terraform-azurerm-vmss-forwarder/compare/v1.1.4...v1.1.5) (2024-05-27)
 
 
